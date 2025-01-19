@@ -1,0 +1,27 @@
+# GOOGLE dynamic Persistent Disk Volume
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dyn-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: dyn-container
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: dyn-vol
+              mountPath: /data
+      volumes:
+        - name: dyn-vol
+          persistentVolumeClaim:
+            claimName: dynamic-disk-pvc

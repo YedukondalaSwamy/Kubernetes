@@ -1,0 +1,55 @@
+apiVersion:
+kind:
+metadata:
+  name:
+spec:
+  replicas:
+  selector:
+    matchLabels:
+      app:
+  template:
+    metadata:
+      labels:
+        app:
+    spec:
+      containers:
+        - name:
+          image:
+          ports:
+            - containerPort:
+          volumeMounts:
+            - name:
+              mountPath:
+      volumes:
+        - name:
+          persistentVolumeClaim:
+            claimName:
+---
+# pvc
+apiVersion:
+kind:
+metadata:
+  name:
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName:
+---
+# storageClass
+apiVersion:
+kind:
+metadata:
+  name:
+provisioner: efs.csi.aws.com
+reclaimPolicy:
+volumeBindingMode:
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: #<EFS_FILE_SYSTEM_ID>
+  directoryPerms: "700"
+  gidRangeStart: "1000"
+  gidRangeEnd: "2000"
+  basePath: "/dynamic-provisioned"

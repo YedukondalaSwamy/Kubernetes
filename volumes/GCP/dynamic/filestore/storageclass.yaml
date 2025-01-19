@@ -1,0 +1,11 @@
+# StorageClass
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: filestore-sc
+provisioner: filestore.csi.storage.gke.io
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+parameters:
+  tier: STANDARD
+  network: default

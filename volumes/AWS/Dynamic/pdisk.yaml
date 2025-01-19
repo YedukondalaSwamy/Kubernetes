@@ -1,0 +1,56 @@
+apiVersion:
+kind:
+metadata:
+  name:
+spec:
+  replicas:
+  selector:
+    matchLabels:
+      app:
+  template:
+    metadata:
+      labels:
+        app:
+    spec:
+      containers:
+        - name:
+          image:
+          ports:
+            - containerPort:
+          volumeMounts:
+            - name:
+              mountPath:
+      volumes:
+        - name:
+          persistentVolumeClaim:
+            claimName:
+---
+# pvc
+apiVersion:
+kind:
+metadata:
+  name:
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName:
+---
+# storageclass
+apiVersion:
+kind:
+metadata:
+  name:
+provisioner:
+capacity:
+  storage:
+volumeBindingMode:
+allowVolumeExpansion:
+reclaimPolicy:
+perameters:
+  type: gp3
+  fsType: ext4
+  encrypted: "true"
+  

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdb-deploy
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: pdb-deploy
+  template:
+    metadata:
+      labels:
+        app: pdb-deploy
+    spec:
+      containers:
+        - name: pdb-deploy
+          image: nginx
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pdb-service
+spec:
+  type: ClusterIP
+  selector:
+    app: pdb-deploy
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

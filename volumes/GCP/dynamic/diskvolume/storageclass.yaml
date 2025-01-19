@@ -1,0 +1,13 @@
+# Storage Class
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: custom-sc
+provisioner: kubernetes.io/gce-pd
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+parameters:
+  type: pd-standard
+  fsType: ext4
+  replication-type: none

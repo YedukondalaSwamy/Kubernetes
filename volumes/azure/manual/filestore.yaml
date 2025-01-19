@@ -1,0 +1,54 @@
+apiVersion:
+kind:
+metadata:
+  name:
+spec:
+  replicas:
+  selector:
+    matchLabels:
+      app:
+  template:
+    metadata:
+      labels:
+        app:
+    spec:
+      conyainers:
+        - name:
+          image:
+          ports:
+            - containerName:
+          volumeMounts:
+            - name:
+              mountPath:
+      volumes:
+        - name: 
+          persistentVolumeClaim:
+            claimName:
+---
+# pvc
+apiVersion:
+kind:
+metadata:
+  name:
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName:
+---
+# pv
+apiVersion:
+kind:
+metadata:
+  name:
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy:
+  azureFile:
+    shareName:
+    readOnly:

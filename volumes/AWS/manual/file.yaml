@@ -1,0 +1,54 @@
+apiVersion:
+kind:
+metadata:
+  name:
+spec:
+  replicas:
+  selector:
+    matchLabels:
+      app:
+  template:
+    metadata:
+      labels:
+        app:
+    spec:
+      containers:
+        - name:
+          image:
+          ports:
+            - containerPort:
+          volumeMounts:
+            - name:
+              mountPath:
+      volumes:
+        - name:
+          persistentVolumeClaim:
+            claimName:
+---
+# pvc
+apiVersion:
+kind:
+metadata:
+  name:
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName:
+---
+# pv
+apiVersion:
+kind:
+metadata:
+  name:
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy:
+  storageClassName:
+  efs:
+    fileSystemId: #<EFS_FILE_SYSTEM_ID>

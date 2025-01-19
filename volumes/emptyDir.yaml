@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: ed-nginx-deploy
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: ed-nginx-deploy
+  template:
+    metadata:
+      labels:
+        app: ed-nginx-deploy
+    spec:
+      containers:
+        - name: nginx-deploy
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: empdir
+              mountPath: /empdir
+      volumes:
+        - name: empdir
+          emptyDir: {}
